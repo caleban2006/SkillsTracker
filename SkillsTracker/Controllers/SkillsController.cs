@@ -15,9 +15,11 @@ namespace SkillsTracker.Controllers
             string html = "<form method='post' action='/skills'>" +
                           "<h1>Skills Tracker</h1>" +
                           "<h2>Coding skils to learn:</h2>" +
-                          "<ol>1. C#</ol>" +
-                          "<ol>2. JavaScript</ol>" +
-                          "<ol>3. Python</ol>" +
+                          "<ol>" +
+                            "<li>C#</li>" +
+                            "<li>JavaScript</li>" +
+                            "<li>Python</li>" +
+                          "</ol>" +
                           "</form>";
 
             return Content(html, "text/html");
@@ -27,7 +29,14 @@ namespace SkillsTracker.Controllers
         [Route("/skills/form")]
         public IActionResult FormResult(string date, string cLanguage, string javaScript, string python)
         {
-            return Content("<h1>" + date + " C#: " + cLanguage + " JavaScript: " + javaScript + " Python: " + python + "</h1>", "text/html");
+            string html = $"<h1>{date}</h1>" +
+                          $"<ol>" +
+                            $"<li>C#: {cLanguage}</li>" +
+                            $"<li>JavaScript: {javaScript}</li>" +
+                            $"<li>Python: {python}</li>" +
+                          $"</ol>";
+            
+            return Content(html, "text/html");
         }
 
         [HttpGet]
@@ -35,27 +44,35 @@ namespace SkillsTracker.Controllers
         public IActionResult FormSelect()
         {
             string html = "<form method='post' action='/skills/form'>" +
-                          "<label>Date:</label>\n" +
-                          "<input type= 'date' name = 'date' value = 'mm / dd / yyy'>\n" +
-                          "<label>C#:</label>\n" +
+                          "<label>Date:</label>" +
+                          "<br>" +
+                          "<input type= 'date' name = 'date' value = 'mm / dd / yyy'>" +
+                          "<br>" +
+                          "<label>C#:</label>" +
+                          "<br>" +
                           "<select name = 'cLanguage':>" +
                             "<option>making apps</option>" +
                             "<option>master coder</option>" +
                             "<option>learning basics</option>" +
-                          "</select>\n" +
-                          "<label>JavaScript:</label>\n" +
+                          "</select>" +
+                          "<br>" +
+                          "<label>JavaScript:</label>" +
+                          "<br>" +
                           "<select name = 'javaScript':>" +
                             "<option>making apps</option>" +
                             "<option>master coder</option>" +
                             "<option>learning basics</option>" +
-                          "</select>\n" +
-                          "<label>Python:</label>\n" +
+                          "</select>" +
+                          "<br>" +
+                          "<label>Python:</label>" +
+                          "<br>" +
                           "<select name = 'python':>" +
                             "<option>making apps</option>" +
                             "<option>master coder</option>" +
                             "<option>learning basics</option>" +
-                          "</select>\n" +
-                          "<input type='submit' value='Submit' />";
+                          "</select>" +
+                          "<br>" +
+                          "<input type='submit' value='Submit'/>";
 
             return Content(html, "text/html");
         }
